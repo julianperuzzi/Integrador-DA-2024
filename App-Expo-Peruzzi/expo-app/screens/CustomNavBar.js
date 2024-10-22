@@ -16,6 +16,10 @@ const CustomNavBar = () => {
         <Ionicons name="list-outline" size={24} color="black" />
         <Text style={styles.buttonText}>Products</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Users')} style={styles.button}> 
+        <Ionicons name="people-outline" size={24} color="black" />
+        <Text style={styles.buttonText}>Users</Text>
+      </TouchableOpacity>
     </View>
   );
 };

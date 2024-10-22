@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, ImageBackground } from 'react-native';
 import axios from 'axios';
 
-// Asegúrate de tener una imagen en tu proyecto o usa una URL
+
 const backgroundImage = { uri: 'https://images.pexels.com/photos/12778855/pexels-photo-12778855.jpeg' };
 
 const LoginScreen = ({ navigation }) => {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   overlay: {
-    backgroundColor: 'rgba(255, 255, 255, 0.95)', // Fondo semi-transparente para mayor legibilidad
+    backgroundColor: 'rgba(255, 255, 255, 0.95)', 
     padding: 20,
     borderRadius: 10,
   },

@@ -9,18 +9,24 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
+      console.log('Enviando datos:', { email, password });
+
       const response = await axios.post('http://192.168.18.248:3000/api/login', {
         email,
         password,
       });
 
-      if (response.data.token) {
-        
+      console.log('Respuesta del servidor:', response.data);
+
+      // Aquí cambia la validación
+      if (response.data.user) {
+        // Si existe el usuario, significa que el login fue exitoso
         navigation.navigate('Products');
       } else {
         setErrorMessage('Login failed');
       }
     } catch (error) {
+      console.error('Error en la solicitud de login:', error);
       setErrorMessage('Login failed: ' + error.message);
     }
   };

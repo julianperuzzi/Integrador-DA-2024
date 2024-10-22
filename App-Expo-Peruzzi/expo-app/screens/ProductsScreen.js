@@ -9,7 +9,7 @@ const ProductsScreen = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http:/192.168.18.248:3000/api/products');
+        const response = await axios.get('http://192.168.18.248:3000/api/products');
         setProducts(response.data);
         setLoading(false);
       } catch (error) {

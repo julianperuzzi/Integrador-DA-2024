@@ -24,7 +24,8 @@ const Navbar = () => {
                             <Link to="/products" className="text-gray-300 hover:text-white">Productos</Link>
                             <Link to="/productslist" className="text-gray-300 hover:text-white">Administrador</Link>
                             <Link to="/usuarios" className="text-gray-300 hover:text-white">Usuarios</Link>
-                            {/* Mostrar el total de productos en el carrito */}
+                            <Link to="/proveedores" className="text-gray-300 hover:text-white">Proveedores</Link>
+                            
                             <Link to="/cart" className="text-gray-300 hover:text-white">Carrito ({totalItems})</Link>
                         </div>
                     </div>

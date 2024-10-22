@@ -8,7 +8,7 @@ const ProductsScreen = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://192.168.18.248:3000/api/products');
+        const response = await axios.get('http://192.168.227.184:3000/api/products');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -20,7 +20,7 @@ const ProductsScreen = () => {
 
   const renderProduct = ({ item }) => (
     <View style={styles.card}>
-      <Image source={{ uri: item.url_image }} style={styles.image} />
+      <Image source={{ uri: item.url_image}} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.title}>{item.name}</Text>
         <Text>{item.description}</Text>

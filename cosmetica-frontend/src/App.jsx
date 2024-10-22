@@ -15,6 +15,7 @@ import ProtectedRoute from './ProtectedRoute'; // Importar la ruta protegida
 import Cart from './pages/Cart';
 import { CartProvider } from './components/CartContext';
 import Perfil from './pages/Perfil';
+import Proveedores from './pages/Proveedores';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                         <Route path="/usuarios" element={<ProtectedRoute element={<UsersList />} />} />        
                         <Route path="/usuarios/add" element={<ProtectedRoute element={<AddUser />} />} />     
                         <Route path="/usuarios/edit/:id" element={<ProtectedRoute element={<EditUser />} />} />
+                        <Route path="/proveedores" element={<ProtectedRoute element={<Proveedores />} />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/perfil" element={<Perfil />} />
                     </Routes>

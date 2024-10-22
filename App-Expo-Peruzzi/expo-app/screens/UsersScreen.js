@@ -10,7 +10,7 @@ const UsersScreen = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://192.168.18.248:3000/api/users');
+        const response = await axios.get('http://192.168.227.184:3000/api/users');
         setUsers(response.data);
       } catch (err) {
         setError('Error al cargar usuarios: ' + err.message);

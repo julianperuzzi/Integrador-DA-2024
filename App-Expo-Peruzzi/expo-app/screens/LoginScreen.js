@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet, ImageBackground } from 'react-native';
 import axios from 'axios';
+
+// Asegúrate de tener una imagen en tu proyecto o usa una URL
+const backgroundImage = { uri: 'https://images.pexels.com/photos/12778855/pexels-photo-12778855.jpeg' };
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -18,9 +21,7 @@ const LoginScreen = ({ navigation }) => {
 
       console.log('Respuesta del servidor:', response.data);
 
-      // Aquí cambia la validación
       if (response.data.user) {
-        // Si existe el usuario, significa que el login fue exitoso
         navigation.navigate('Products');
       } else {
         setErrorMessage('Login failed');
@@ -32,25 +33,27 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Email</Text>
-      <TextInput
-        style={styles.input}
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Enter your email"
-      />
-      <Text>Password</Text>
-      <TextInput
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-        placeholder="Enter your password"
-        secureTextEntry
-      />
-      {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
-      <Button title="Login" onPress={handleLogin} />
-    </View>
+    <ImageBackground source={backgroundImage} style={styles.container}>
+      <View style={styles.overlay}>
+        <Text>Email</Text>
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Enter your email"
+        />
+        <Text>Password</Text>
+        <TextInput
+          style={styles.input}
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Enter your password"
+          secureTextEntry
+        />
+        {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
+        <Button title="Login" onPress={handleLogin} />
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -59,6 +62,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 16,
+  },
+  overlay: {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)', // Fondo semi-transparente para mayor legibilidad
+    padding: 20,
+    borderRadius: 10,
   },
   input: {
     borderWidth: 1,

@@ -1,41 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
 import axios from 'axios';
 
 const ProductsScreen = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://192.168.18.248:3000/api/products');
         setProducts(response.data);
-        setLoading(false);
       } catch (error) {
-        console.error('Error fetching products', error);
-        setLoading(false);
+        console.error('Error fetching products:', error);
       }
     };
 
     fetchProducts();
   }, []);
 
-  if (loading) {
-    return <Text>Loading...</Text>;
-  }
+  const renderProduct = ({ item }) => (
+    <View style={styles.card}>
+      <Image source={{ uri: item.url_image }} style={styles.image} />
+      <View style={styles.info}>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text>{item.description}</Text>
+        <Text style={styles.price}>${item.price}</Text>
+      </View>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
       <FlatList
         data={products}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.product}>
-            <Text>{item.name}</Text>
-            <Text>{item.price}</Text>
-          </View>
-        )}
+        renderItem={renderProduct}
       />
     </View>
   );
@@ -44,12 +43,32 @@ const ProductsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 10,
   },
-  product: {
-    borderBottomWidth: 1,
+  card: {
+    flexDirection: 'row',
+    borderWidth: 1,
     borderColor: '#ccc',
-    paddingVertical: 10,
+    borderRadius: 10,
+    marginVertical: 10,
+    overflow: 'hidden',
+  },
+  image: {
+    width: 100,
+    height: 100,
+  },
+  info: {
+    padding: 10,
+    flex: 1,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  price: {
+    fontSize: 16,
+    color: 'green',
+    marginTop: 5,
   },
 });
 

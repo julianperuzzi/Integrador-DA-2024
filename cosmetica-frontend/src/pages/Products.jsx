@@ -1,12 +1,14 @@
 // src/pages/Products.jsx
 import { useState, useEffect } from "react";
 import { useCart } from "../components/CartContext"; // Importar el hook de carrito
+import ProductModal from "../components/ProductModal"; // Importar el componente modal
 
 const Products = () => {
   const { cart, addToCart } = useCart(); // Usar el contexto de carrito
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState(null); // Estado para el producto seleccionado
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -24,6 +26,14 @@ const Products = () => {
     fetchProducts();
   }, []);
 
+  const handleProductClick = (product) => {
+    setSelectedProduct(product); // Establecer el producto seleccionado
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProduct(null); // Cerrar el modal
+  };
+
   if (loading) return <div>Cargando productos...</div>;
   if (error) return <div>{error}</div>;
 
@@ -34,7 +44,8 @@ const Products = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+            className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition cursor-pointer"
+            onClick={() => handleProductClick(product)} // Abrir el modal al hacer clic
           >
             <img
               src={product.url_image}
@@ -45,7 +56,10 @@ const Products = () => {
             <p className="text-gray-600">${product.price}</p>
             <p className="text-gray-600">Stock: {product.stock}</p>
             <button
-              onClick={() => addToCart(product)} // Usar la función addToCart del contexto
+              onClick={(e) => {
+                e.stopPropagation(); // Evitar que el clic en el botón cierre el modal
+                addToCart(product);
+              }} // Usar la función addToCart del contexto
               className="mt-4 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
             >
               Agregar al Carrito
@@ -60,7 +74,7 @@ const Products = () => {
           <p>El carrito está vacío.</p>
         ) : (
           <ul className="list-disc list-inside">
-            {cart.map(item => (
+            {cart.map((item) => (
               <li key={item.id}>
                 {item.name} - Cantidad: {item.quantity}
               </li>
@@ -68,6 +82,9 @@ const Products = () => {
           </ul>
         )}
       </div>
+
+      {/* Modal para mostrar información del producto */}
+      <ProductModal product={selectedProduct} onClose={handleCloseModal} />
     </div>
   );
 };

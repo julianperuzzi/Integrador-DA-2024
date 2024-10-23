@@ -33,8 +33,10 @@ const ProductsList = () => {
                     <tr>
                         <th className="border-b p-3 text-left">Imagen</th>
                         <th className="border-b p-3 text-left">Nombre</th>
+                        <th className="border-b p-3 text-left">Descripción</th>
                         <th className="border-b p-3 text-left">Precio</th>
                         <th className="border-b p-3 text-left">Stock</th>
+                        <th className="border-b p-3 text-left">Proveedor</th>
                         <th className="border-b p-3 text-left">Acciones</th>
                     </tr>
                 </thead>
@@ -42,11 +44,15 @@ const ProductsList = () => {
                     {products.map((product) => (
                         <tr key={product.id} className="hover:bg-gray-100 transition-colors">
                             <td className="border-b p-3">
-                                <img src={product.url_image} alt={product.name} className="h-16 w-16 object-cover" />
+                                <img src={product.url_image} alt={product.product_name} className="h-16 w-16 object-cover" />
                             </td>
                             <td className="border-b p-3">{product.name}</td>
+                            <td className="border-b p-3">{product.description}</td>
                             <td className="border-b p-3">${product.price}</td>
                             <td className="border-b p-3">{product.stock}</td>
+                            <td className="border-b p-3">
+                                {product.provider_name ? product.provider_name : 'Sin Proveedor'}
+                            </td>
                             <td className="border-b p-3">
                                 <Link to={`/edit-product/${product.id}`} className="text-white bg-orange-500 p-2 hover:underline">Editar</Link>
                                 <button onClick={() => handleDelete(product.id)} className="text-white bg-red-500 p-2 hover:underline ml-4">Eliminar</button>

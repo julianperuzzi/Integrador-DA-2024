@@ -50,7 +50,7 @@ const Login = () => {
         login(data.user); // Aquí asumimos que la respuesta contiene un objeto `user`
         
         // Redirigir a la página de productos
-        navigate("/products");
+        navigate("/productslist");
       } else {
         // Manejo de errores
         setError(data.message || "Error en el login");

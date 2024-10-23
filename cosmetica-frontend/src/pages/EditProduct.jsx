@@ -4,15 +4,29 @@ import { useParams, useNavigate } from 'react-router-dom';
 const EditProduct = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const [providers, setProviders] = useState([]); // Estado para la lista de proveedores
     const navigate = useNavigate();
 
+    // Cargar el producto y la lista de proveedores
     useEffect(() => {
         const fetchProduct = async () => {
             const response = await fetch(`http://localhost:3000/api/products/${id}`);
             const data = await response.json();
             setProduct(data);
         };
+
+        const fetchProviders = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/proveedores');
+                const data = await response.json();
+                setProviders(data);
+            } catch (error) {
+                console.error('Error al cargar los proveedores:', error);
+            }
+        };
+
         fetchProduct();
+        fetchProviders();
     }, [id]);
 
     const handleChange = (e) => {
@@ -37,7 +51,7 @@ const EditProduct = () => {
 
             if (response.ok) {
                 alert('Producto editado con éxito');
-                navigate('/products'); // Redirige a la lista de productos
+                navigate('/productslist'); // Redirige a la lista de productos
             } else {
                 alert('Error al editar el producto');
             }
@@ -68,7 +82,6 @@ const EditProduct = () => {
                     <label className="block text-sm font-medium text-gray-700">Descripción</label>
                     <textarea
                         name="description"
-                        
                         value={product.description}
                         onChange={handleChange}
                         className="mt-1 block w-full border rounded-md p-2"
@@ -95,6 +108,34 @@ const EditProduct = () => {
                         onChange={handleChange}
                         className="mt-1 block w-full border rounded-md p-2"
                     />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">URL de la Imagen</label>
+                    <input
+                        type="text"
+                        name="url_image"
+                        required
+                        value={product.url_image}
+                        onChange={handleChange}
+                        className="mt-1 block w-full border rounded-md p-2"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">Proveedor</label>
+                    <select
+                        name="proveedor_id"
+                        required
+                        value={product.proveedor_id || ''} // Asegúrate de manejar un valor por defecto
+                        onChange={handleChange}
+                        className="mt-1 block w-full border rounded-md p-2"
+                    >
+                        <option value="">Seleccione un proveedor</option>
+                        {providers.map((proveedor) => (
+                            <option key={proveedor.id} value={proveedor.id}>
+                                {proveedor.company}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <button
                     type="submit"

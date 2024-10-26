@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -31,7 +31,7 @@ const Home = () => {
 
     return (
         <div className="min-h-screen bg-gray-100">
-            <header className="bg-gradient-to-br from-orange-700 via-orange-500 to-orange-300 text-white py-48 text-center">
+            <header className="bg-gradient-to-b from-amber-700/70 via-amber-700/50 to-amber-700/40 text-white py-48 text-center">
                 <h1 className="text-6xl font-bold ">Bienvenido a Cosmetica AR</h1>
                 <p className="mt-2 text-lg">Los mejores productos para tu cuidado personal</p>
                 <Link to="/products" className="mt-4 inline-block bg-white text-orange-400 font-semibold py-2 px-6 rounded-full hover:bg-gray-200 transition duration-200">
@@ -63,37 +63,66 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="py-12 bg-gray-200">
-                <h2 className="text-3xl font-semibold text-center mb-8">Testimonios</h2>
-                <Swiper
-                    navigation
-                    pagination={{ clickable: true }}
-                    modules={[Navigation, Pagination]} // Asegúrate de registrar los módulos aquí
-                    className="mySwiper"
-                >
-                    <SwiperSlide>
-                        <div className="bg-white p-6 rounded-lg shadow-md px-24 text-center">
-                            <p>"¡Los productos son maravillosos! Noté la diferencia desde el primer uso."</p>
-                            <h4 className="font-bold mt-4">- Juan Pérez</h4>
-                            <img src="https://i.pinimg.com/enabled/564x/01/aa/d9/01aad90be7a9a7368a42c82c832393a1.jpg" alt="" className="w-28 h-28 object-cover mx-auto rounded-full my-4" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="bg-white p-6 rounded-lg shadow-md px-24 text-center">
-                            <p>"El mejor servicio al cliente que he experimentado. ¡Recomiendo esta marca!"</p>
-                            <h4 className="font-bold mt-4">- María López</h4>
-                            <img src="https://i.pinimg.com/enabled/564x/0f/45/27/0f4527aeb08f61a68161a19f9bb4e3b5.jpg" alt="" className="w-28 h-28 object-cover mx-auto rounded-full my-4" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="bg-white p-6 rounded-lg shadow-md px-24 text-center">
-                            <p>"Calidad excepcional y envío rápido. Estoy muy satisfecha."</p>
-                            <h4 className="font-bold mt-4">- Ana González</h4>
-                            <img src="https://i.pinimg.com/enabled/564x/94/e9/02/94e902ed11edd05283b9f2859b1e9384.jpg" alt="" className="w-28 h-28 object-cover mx-auto rounded-full my-4" />
-                        </div>
-                    </SwiperSlide>
-                </Swiper>
-            </section>
+            <section className="py-12 bg-gray-100">
+    <h2 className="text-3xl font-semibold text-center mb-8 ">Quiénes Somos</h2>
+    <div className=" w-full md:h-[50vh] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-white shadow-lg">
+        <div className='md:text-right md:pr-6 md:pl-20 flex flex-col space-y-8'>
+        <h3 className="text-3xl font-semibold  mb-8 ">Cosmetica AR</h3>
+            <p className="text-gray-700 text-lg ml-20">
+                En Cosmética AR, nos dedicamos a ofrecer productos de alta calidad para el cuidado personal. 
+                Nuestro objetivo es mejorar el bienestar de nuestros clientes mediante productos naturales, 
+                seguros y eficaces. Nos enorgullece ofrecer un servicio excepcional y productos que realmente 
+                marcan la diferencia.
+            </p>
+            <p className="mt-8 text-gray-700 text-lg">
+                Nos apasiona la belleza y la salud, y trabajamos constantemente para innovar y cumplir con 
+                las expectativas de nuestros clientes.
+            </p>
+        </div>
+        <div>
+            <img 
+                src="https://images.pexels.com/photos/3018845/pexels-photo-3018845.jpeg" 
+                alt="Imagen de Cosmética AR" 
+                className="md:h-[50vh] w-full object-cover"
+            />
+        </div>
+    </div>
+</section>
+
+
+<section className="py-12 bg-gray-100">
+    <h2 className="text-3xl font-semibold text-center mb-8">Testimonios</h2>
+    <Swiper
+        navigation={{ hidden: true}}
+        pagination={{ clickable: true }}
+        modules={[Navigation, Pagination, Autoplay]}
+        autoplay={{ delay: 5000, disableOnInteraction: false }} 
+        loop={true} 
+        className="mySwiper"
+    >
+        <SwiperSlide>
+            <div className="bg-white p-6  px-24 text-center py-8">
+                <p>"¡Los productos son maravillosos! Noté la diferencia desde el primer uso."</p>
+                <h4 className="font-bold mt-4">- Juan Pérez</h4>
+                <img src="https://i.pinimg.com/enabled/564x/01/aa/d9/01aad90be7a9a7368a42c82c832393a1.jpg" alt="" className="w-28 h-28 object-cover mx-auto rounded-full my-4" />
+            </div>
+        </SwiperSlide>
+        <SwiperSlide>
+            <div className="bg-white p-6 shadow-md px-24 text-center py-8">
+                <p>"El mejor servicio al cliente que he experimentado. ¡Recomiendo esta marca!"</p>
+                <h4 className="font-bold mt-4">- María López</h4>
+                <img src="https://i.pinimg.com/enabled/564x/0f/45/27/0f4527aeb08f61a68161a19f9bb4e3b5.jpg" alt="" className="w-28 h-28 object-cover mx-auto rounded-full my-4" />
+            </div>
+        </SwiperSlide>
+        <SwiperSlide>
+            <div className="bg-white p-6 shadow-md px-24 text-center py-8">
+                <p>"Calidad excepcional y envío rápido. Estoy muy satisfecha."</p>
+                <h4 className="font-bold mt-4">- Ana González</h4>
+                <img src="https://i.pinimg.com/enabled/564x/94/e9/02/94e902ed11edd05283b9f2859b1e9384.jpg" alt="" className="w-28 h-28 object-cover mx-auto rounded-full my-4" />
+            </div>
+        </SwiperSlide>
+    </Swiper>
+</section>
 
             <section className="py-12 ">
                 <h2 className="text-3xl font-semibold text-center mb-8">Promociones</h2>
@@ -113,6 +142,9 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
+
+
 
             <section className="py-12">
                 <h2 className="text-3xl font-semibold text-center mb-8">Contáctanos</h2>

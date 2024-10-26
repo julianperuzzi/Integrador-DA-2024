@@ -12,13 +12,17 @@ const CustomNavBar = () => {
         <Ionicons name="log-in-outline" size={24} color="black" />
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Products')} style={styles.button}>
+      <TouchableOpacity onPress={() => navigation.navigate('Productos')} style={styles.button}>
         <Ionicons name="list-outline" size={24} color="black" />
-        <Text style={styles.buttonText}>Products</Text>
+        <Text style={styles.buttonText}>Productos</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Users')} style={styles.button}> 
+      <TouchableOpacity onPress={() => navigation.navigate('Usuarios')} style={styles.button}> 
         <Ionicons name="people-outline" size={24} color="black" />
-        <Text style={styles.buttonText}>Users</Text>
+        <Text style={styles.buttonText}>Usuarios</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Proveedores')} style={styles.button}> 
+        <Ionicons name="people-outline" size={24} color="black" />
+        <Text style={styles.buttonText}>Proveedores</Text>
       </TouchableOpacity>
     </View>
   );

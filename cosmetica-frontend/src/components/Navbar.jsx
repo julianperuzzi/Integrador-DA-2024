@@ -18,12 +18,12 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-teal-600/90 shadow-md">
+        <nav className="bg-amber-700/60 shadow-sm z-20 sticky ">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-20 items-center">
+                <div className="flex justify-between h-24 items-center">
 
                     <div className="flex items-center">
-                        <Link to="/" className="font-bold text-white hover:text-gray-300 px-4 pr-16 text-2xl">Cosmetica AR</Link>                        
+                        <Link to="/" className="font-bold text-white hover:text-gray-200 px-4 pr-16 text-2xl">Cosmetica AR</Link>                        
                     </div>
 
                     {/* Menú hamburguesa para móviles */}
@@ -43,19 +43,19 @@ const Navbar = () => {
 
                     <div className="flex items-center">                        
                         <div className="hidden sm:flex sm:space-x-8">
-                            <Link to="/" className="text-gray-300 hover:text-white">Inicio</Link>
-                            <Link to="/products" className="text-gray-300 hover:text-white">Productos</Link>
+                            <Link to="/" className="text-gray-200 hover:text-white">Inicio</Link>
+                            <Link to="/products" className="text-gray-200 hover:text-white">Productos</Link>
                             
                             {/* Muestra estos enlaces solo si el usuario está autenticado */}
                             {user && (
                                 <>
-                                    <Link to="/productslist" className="text-gray-300 hover:text-white">Administrador</Link>
-                                    <Link to="/usuarios" className="text-gray-300 hover:text-white">Usuarios</Link>
-                                    <Link to="/proveedores" className="text-gray-300 hover:text-white">Proveedores</Link>
+                                    <Link to="/productslist" className="text-gray-200 hover:text-white">Administrador</Link>
+                                    <Link to="/usuarios" className="text-gray-200 hover:text-white">Usuarios</Link>
+                                    <Link to="/proveedores" className="text-gray-200 hover:text-white">Proveedores</Link>
                                 </>
                             )}
                             
-                            <Link to="/cart" className="text-gray-300 hover:text-white">Carrito ({totalItems})</Link>
+                            <Link to="/cart" className="text-gray-200 hover:text-white">Carrito ({totalItems})</Link>
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <Link to="/login" className="bg-teal-800 text-white py-2 px-4 border border-transparent hover:bg-teal-900 transition duration-200">Iniciar Sesión</Link>
+                                <Link to="/login" className="bg-amber-800 text-white py-2 px-4 border border-transparent hover:bg-teal-900 transition duration-200">Iniciar Sesión</Link>
                             </>
                         )}
                     </div>
@@ -83,19 +83,19 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="sm:hidden bg-teal-600/90 p-4">
                     <div className="flex flex-col space-y-2">
-                        <Link to="/" className="text-gray-300 hover:text-white">Inicio</Link>
-                        <Link to="/products" className="text-gray-300 hover:text-white">Productos</Link>
+                        <Link to="/" className="text-gray-200 hover:text-white">Inicio</Link>
+                        <Link to="/products" className="text-gray-200 hover:text-white">Productos</Link>
                         {user && (
                             <>
-                                <Link to="/productslist" className="text-gray-300 hover:text-white">Administrador</Link>
-                                <Link to="/usuarios" className="text-gray-300 hover:text-white">Usuarios</Link>
-                                <Link to="/proveedores" className="text-gray-300 hover:text-white">Proveedores</Link>
+                                <Link to="/productslist" className="text-gray-200 hover:text-white">Administrador</Link>
+                                <Link to="/usuarios" className="text-gray-200 hover:text-white">Usuarios</Link>
+                                <Link to="/proveedores" className="text-gray-200 hover:text-white">Proveedores</Link>
                             </>
                         )}
-                        <Link to="/cart" className="text-gray-300 hover:text-white">Carrito ({totalItems})</Link>
+                        <Link to="/cart" className="text-gray-200 hover:text-white">Carrito ({totalItems})</Link>
                         {user ? (
                             <>
-                                <Link to="/perfil" className="text-gray-300 hover:text-white">Perfil</Link>
+                                <Link to="/perfil" className="text-gray-200 hover:text-white">Perfil</Link>
                                 <button
                                     onClick={logout}
                                     className="w-full text-left text-red-600 hover:text-red-700 transition duration-200"

@@ -33,7 +33,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       console.log('Enviando datos:', { email, password });
 
-      const response = await axios.post('http://192.168.18.248:3000/api/login', {
+      const response = await axios.post('http://192.168.18.71:3000/api/login', {
         email,
         password,
       });

@@ -9,8 +9,8 @@ const ProvidersScreen = () => {
   useEffect(() => {
     const fetchProviders = async () => {
       try {
-        const response = await axios.get('http://192.168.18.248:3000/api/proveedores');
-        setProviders(response.data); // Guarda los datos de proveedores
+        const response = await axios.get('http://192.168.18.71:3000/api/proveedores');
+        setProviders(response.data); 
       } catch (error) {
         console.error('Error al obtener proveedores:', error);
       } finally {
